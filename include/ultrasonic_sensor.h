@@ -8,7 +8,7 @@ typedef enum {
   PULSE_NOT_SEND,
   TIMEOUT
 
-} __attribute__((packed)) UltrasonicSensorFMS_t;
+} __attribute__((packed)) UltrasonicSensorFSM_t;
 
 typedef  enum {
     FRONT,
@@ -16,7 +16,7 @@ typedef  enum {
 } __attribute__((packed)) UltrasonicSensorPosition_t;
 
 
-extern volatile UltrasonicSensorFMS_t actual_state;
+extern volatile UltrasonicSensorFSM_t actual_state;
 extern volatile UltrasonicSensorPosition_t actual_position;
 
 void trigger();

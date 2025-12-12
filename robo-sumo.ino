@@ -25,8 +25,14 @@ void loop() {
         cli();
         distance = 0.01723 * pulse_time_calc();
         sei();
-        
-        Serial.println(distance);
+        if (actual_position == REAR){
+            Serial.print("R:");
+            Serial.println(distance);
+
+        } else {
+            Serial.print("F:");
+            Serial.println(distance);
+        }
     }
 
 }
