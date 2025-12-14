@@ -24,7 +24,7 @@ static inline void pulse_delay(){
 
 
 void trigger(UltrasonicTrigPosition_t sensor_trig_pin_position, UltrasonicEchoPosition_t sensor_echo_pin_position){
-    if (actual_state == PULSE_NOT_SEND){
+    if (actual_state == PULSE_NOT_SEND || actual_state == TIMEOUT){
         latest_trigger = millis();
         echo_pin_position = sensor_echo_pin_position;
         actual_state = PULSE_SENT;
