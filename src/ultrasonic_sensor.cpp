@@ -9,7 +9,7 @@ static  unsigned long latest_trigger = 0;
 
 
 
-static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_1;
+static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_ECHO;
 
 static inline void pulse_delay(){
    if (millis() - latest_trigger >= 60){

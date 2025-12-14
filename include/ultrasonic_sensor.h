@@ -11,14 +11,14 @@ typedef enum {
 } __attribute__((packed)) UltrasonicSensorFSM_t;
 
 typedef  enum {
-    FRONT = (1 << ULTRA_SENSOR_1_TRIG),
-    REAR = (1 << ULTRA_SENSOR_2_TRIG)
+    FRONT_TRIG = (1 << ULTRA_SENSOR_1_TRIG),
+    REAR_TRIG = (1 << ULTRA_SENSOR_2_TRIG)
 } __attribute__((packed)) UltrasonicTrigPosition_t;
 
 
 typedef enum{
-  FRONT_1 = (1 << ULTRA_SENSOR_1_ECHO),
-  REAR_2 = (1 << ULTRA_SENSOR_2_ECHO)
+  FRONT_ECHO = (1 << ULTRA_SENSOR_1_ECHO),
+  REAR_ECHI = (1 << ULTRA_SENSOR_2_ECHO)
 } __attribute__((packed)) UltrasonicEchoPosition_t;
 
 extern volatile UltrasonicSensorFSM_t actual_state;

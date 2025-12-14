@@ -19,15 +19,6 @@ void setup() {
 
 
 void loop() {
-    unsigned int distance = 0;
-    trigger(REAR, REAR_2);
-    if (actual_state == PULSE_RECEIVED){
-            cli();
-            distance = 0.01723 * pulse_time_calc();
-            sei();
-            Serial.println(distance);
-
-    }
 }
 
 
