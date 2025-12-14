@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include "../include/pins.h"
 #include "../include/ultrasonic_sensor.h"
 #define ULTRASONIC_QUANTITY 2
@@ -6,14 +7,18 @@ static volatile unsigned long initial_time = 0;
 static volatile unsigned long end_time = 0;
 volatile UltrasonicSensorFSM_t actual_state = PULSE_NOT_SEND;
 static  unsigned long latest_trigger = 0;
-
+static unsigned long pulse_received_time = 0;
 
 
 static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_ECHO;
 
 static inline void pulse_delay(){
-   if (millis() - latest_trigger >= 60){
-         actual_state = PULSE_NOT_SEND;
+  if (actual_state == PULSE_RECEIVED){
+      if (millis() - pulse_received_time >= 25){
+        actual_state = PULSE_NOT_SEND;
+      }
+  } else if (millis() - latest_trigger >= 60 && actual_state == PULSE_WAIT){
+         actual_state = TIMEOUT;
    }
 }
 
@@ -45,6 +50,7 @@ ISR (PCINT2_vect){
        actual_state = PULSE_WAIT;
     } else {
         end_time = micros();
+        pulse_received_time = millis();
         actual_state = PULSE_RECEIVED;
 
     }
