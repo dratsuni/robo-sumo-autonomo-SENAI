@@ -20,7 +20,7 @@ void setup() {
 
 void loop() {
     unsigned int distance = 0;
-    trigger(REAR_TRIG, REAR_ECHO);
+    trigger(FRONT_TRIG, FRONT_ECHO);
     if (actual_state == PULSE_RECEIVED){
             cli();
             distance = 0.01723 * pulse_time_calc();
