@@ -3,6 +3,8 @@
 #define ICR1_TOP 100
 #include <Arduino.h>
 
+
+__attribute__((always_inline))
 inline void init_timer1_phase_correct_pwm(){
   TCCR1A = 0x00;
   TCCR1B = 0x00;
@@ -14,6 +16,7 @@ inline void init_timer1_phase_correct_pwm(){
   OCR1B = 0;
 }
 
+__attribute__((always_inline))
 inline void init_pcint2_interrupt(){
   PCICR = (1 << PCIE2);
   PCMSK2 = (1 << PCINT21) | (1 << PCINT20);

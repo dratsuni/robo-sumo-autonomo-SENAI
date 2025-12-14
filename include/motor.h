@@ -8,6 +8,7 @@ typedef enum{
   BRAKE
 } __attribute__((packed)) MotorFSM_t;
 
+__attribute__((always_inline))
 inline void change_velocity_motor(uint8_t velocity_motor1, uint8_t velocity_motor2){
   OCR1A = velocity_motor1;
   OCR1B = velocity_motor2;

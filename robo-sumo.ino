@@ -20,21 +20,14 @@ void setup() {
 
 void loop() {
     unsigned int distance = 0;
-    trigger();
+    trigger(REAR, REAR_2);
     if (actual_state == PULSE_RECEIVED){
-        cli();
-        distance = 0.01723 * pulse_time_calc();
-        sei();
-        if (actual_position == REAR){
-            Serial.print("R:");
+            cli();
+            distance = 0.01723 * pulse_time_calc();
+            sei();
             Serial.println(distance);
 
-        } else {
-            Serial.print("F:");
-            Serial.println(distance);
-        }
     }
-
 }
 
 

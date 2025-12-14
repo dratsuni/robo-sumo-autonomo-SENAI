@@ -5,40 +5,28 @@
 static volatile unsigned long initial_time = 0;
 static volatile unsigned long end_time = 0;
 volatile UltrasonicSensorFSM_t actual_state = PULSE_NOT_SEND;
-volatile UltrasonicSensorPosition_t actual_position = FRONT;
 static  unsigned long latest_trigger = 0;
 
-static uint8_t ultrasonic_trig_array[ULTRASONIC_QUANTITY] = {(1 << ULTRA_SENSOR_1_TRIG), (1 << ULTRA_SENSOR_2_TRIG)};
-static uint8_t ultrasonic_echo_array[ULTRASONIC_QUANTITY] = {(1 << ULTRA_SENSOR_1_ECHO), (1 << ULTRA_SENSOR_2_ECHO)};
-static volatile uint8_t actual_sensor_index = 0;
 
 
-
-static inline void update_position(){
-  if (actual_position < (ULTRASONIC_QUANTITY - 1)){
-    actual_position = (UltrasonicSensorPosition_t) (actual_position + 1);
-  } else {
-    actual_position = (UltrasonicSensorPosition_t) 0;
-
-  }
-}
+static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_1;
 
 static inline void pulse_delay(){
    if (millis() - latest_trigger >= 60){
-       actual_state = PULSE_NOT_SEND;
-       update_position();
+         actual_state = PULSE_NOT_SEND;
    }
 }
 
 
-void trigger(){
-    if (actual_state == PULSE_NOT_SEND || actual_state == TIMEOUT){
+void trigger(UltrasonicTrigPosition_t sensor_trig_pin_position, UltrasonicEchoPosition_t sensor_echo_pin_position){
+    if (actual_state == PULSE_NOT_SEND){
         latest_trigger = millis();
+        echo_pin_position = sensor_echo_pin_position;
         actual_state = PULSE_SENT;
-        PORTC |= ultrasonic_trig_array[actual_position];
+        PORTC |= sensor_trig_pin_position;
         delayMicroseconds(10);
-        PORTC &= ~(ultrasonic_trig_array[actual_position]);
-    } else {
+        PORTC &= ~(sensor_trig_pin_position);
+    } else {  
       pulse_delay();
     }
 }
@@ -51,9 +39,10 @@ unsigned int pulse_time_calc(){
 
 
 ISR (PCINT2_vect){
-  if (actual_state == PULSE_SENT){
-    if ((PIND & ultrasonic_echo_array[actual_position])){
-       initial_time = micros();      
+  if (actual_state == PULSE_SENT || actual_state == PULSE_WAIT){
+    if ((PIND & echo_pin_position)){
+       initial_time = micros();     
+       actual_state = PULSE_WAIT;
     } else {
         end_time = micros();
         actual_state = PULSE_RECEIVED;
