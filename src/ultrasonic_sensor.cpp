@@ -7,14 +7,17 @@ static volatile unsigned long initial_time = 0;
 static volatile unsigned long end_time = 0;
 volatile UltrasonicSensorFSM_t actual_state = PULSE_NOT_SEND;
 static  unsigned long latest_trigger = 0;
-static unsigned long pulse_received_time = 0;
+static volatile unsigned long pulse_received_time = 0;
 
 
 static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_ECHO;
-
-static inline void pulse_delay(){
+__attribute__((always_inline))
+static inline void trigger_delay(){
   if (actual_state == PULSE_RECEIVED){
-      if (millis() - pulse_received_time >= 25){
+      cli();
+      unsigned atomic_pulse_received_time = millis() - pulse_received_time;
+      sei();
+      if (atomic_pulse_received_time >= 25){
         actual_state = PULSE_NOT_SEND;
       }
   } else if (millis() - latest_trigger >= 60 && actual_state == PULSE_WAIT){
@@ -32,13 +35,16 @@ void trigger(UltrasonicTrigPosition_t sensor_trig_pin_position, UltrasonicEchoPo
         delayMicroseconds(10);
         PORTC &= ~(sensor_trig_pin_position);
     } else {  
-      pulse_delay();
+      trigger_delay();
     }
 }
 
 
 unsigned int pulse_time_calc(){
-    return end_time - initial_time;
+    cli();
+    unsigned long time = end_time - initial_time;
+    sei();
+    return time;
 }
 
 
@@ -52,7 +58,6 @@ ISR (PCINT2_vect){
         end_time = micros();
         pulse_received_time = millis();
         actual_state = PULSE_RECEIVED;
-
     }
   }
 }
