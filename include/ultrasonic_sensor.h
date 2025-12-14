@@ -1,6 +1,5 @@
 #ifndef ULTRASONIC_SENSOR_H
 #define ULTRASONIC_SENSOR_H
-#include <Arduino.h>
 #include "pins.h"
 typedef enum {
   PULSE_SENT,

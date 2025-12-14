@@ -1,6 +1,5 @@
 #ifndef MOTOR_H
 #define MOTOR_H
-#include <Arduino.h>
 typedef enum{
   CLOCK_WISE,
   COUNTER_CLOCK_WISE,
