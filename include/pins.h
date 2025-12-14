@@ -1,6 +1,5 @@
 #ifndef PINS_H
 #define PINS_H
-#include <Arduino.h>
 #define ULTRA_SENSOR_1_ECHO PD4
 #define ULTRA_SENSOR_1_TRIG PC0
 #define ULTRA_SENSOR_2_ECHO PD5
