@@ -1,7 +1,5 @@
 #include "include/start_configs.h"
 #include "include/motor.h"
-#include "include/pins.h"
-
 #include "include/ultrasonic_sensor.h"
 
 
