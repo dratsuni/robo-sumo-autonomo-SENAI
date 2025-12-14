@@ -1,5 +1,4 @@
 #include "Arduino.h"
-#include "../include/pins.h"
 #include "../include/ultrasonic_sensor.h"
 #define ULTRASONIC_QUANTITY 2
 

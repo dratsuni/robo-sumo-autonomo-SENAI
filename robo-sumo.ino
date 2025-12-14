@@ -22,9 +22,7 @@ void loop() {
     unsigned int distance = 0;
     trigger(FRONT_TRIG, FRONT_ECHO);
     if (actual_state == PULSE_RECEIVED){
-            cli();
             distance = 0.01723 * pulse_time_calc();
-            sei();
             Serial.println(distance);
 
     }
