@@ -1,15 +1,15 @@
 #include "Arduino.h"
 #include "../include/ultrasonic_sensor.h"
-#define ULTRASONIC_QUANTITY 2
 
 static volatile unsigned long initial_time = 0;
 static volatile unsigned long end_time = 0;
-volatile UltrasonicSensorFSM_t actual_state = PULSE_NOT_SEND;
+
 static  unsigned long latest_trigger = 0;
 static volatile unsigned long pulse_received_time = 0;
 
-
 static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_ECHO;
+volatile UltrasonicSensorFSM_t actual_state = PULSE_NOT_SEND;
+
 __attribute__((always_inline))
 static inline void trigger_delay(){
   if (actual_state == PULSE_RECEIVED){
