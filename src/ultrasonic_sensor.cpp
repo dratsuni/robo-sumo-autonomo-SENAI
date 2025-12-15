@@ -48,8 +48,6 @@ unsigned int pulse_time_calc(){
     return time;
 }
 
-
-
 ISR (PCINT2_vect){
   if (actual_state == PULSE_SENT || actual_state == PULSE_WAIT){
     if ((PIND & echo_pin_position)){
