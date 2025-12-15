@@ -7,8 +7,8 @@
 static void change_velocity_motor_1(uint8_t velocity);
 static void change_velocity_motor_2(uint8_t velocity);
 
-Motor_t motor_1 = {IN1_PIN, IN2_PIN, change_velocity_motor_1};
-Motor_t motor_2 = {IN3_PIN, IN4_PIN, change_velocity_motor_2};
+Motor_t g_motor_1 = {IN1_PIN, IN2_PIN, change_velocity_motor_1};
+Motor_t g_motor_2 = {IN3_PIN, IN4_PIN, change_velocity_motor_2};
 
 
 static void change_velocity_motor_1(uint8_t velocity){
