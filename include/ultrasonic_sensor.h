@@ -31,7 +31,7 @@ typedef struct {
 
 extern volatile UltrasonicSensorFSM_t g_actual_state;
 
-extern UltrasonicSensor_t g_ultrasonic_sensor[3];
+extern UltrasonicSensor_t g_ultrasonic_sensor[2];
 
 void trigger(UltrasonicSensor_t *ultrasonic_sensor);
 unsigned int pulse_time_calc();

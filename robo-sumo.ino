@@ -10,7 +10,7 @@ void setup() {
     start_timer1_phase_correct_pwm();
     start_pins();
     sei();
-    motor_manager(&motor_1, CLOCK_WISE, 100);
+    motor_manager(&g_motor_1, CLOCK_WISE, 100);
 }
 
 
