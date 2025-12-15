@@ -25,4 +25,5 @@ extern volatile UltrasonicSensorFSM_t actual_state;
 
 void trigger(UltrasonicTrigPosition_t sensor_trig_pin_position, UltrasonicEchoPosition_t sensor_echo_pin_position);
 unsigned int pulse_time_calc();
+
 #endif
