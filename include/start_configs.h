@@ -24,7 +24,7 @@ inline void start_pcint2_interrupt(){
 
 __attribute__((always_inline))
 inline void start_pins(){
-  DDRB |= (1 << MOTOR_1_ENA) | (1 << MOTOR_2_ENB) | (1 << IN1_AND_IN3) | (1 << IN2_AND_IN4);
+  DDRB |= ENABLE_ALL_H_BRIDGE_PINS;
   DDRD &= ~((1 << ULTRA_SENSOR_1_ECHO) | (1 << ULTRA_SENSOR_2_ECHO));
   DDRC |= (1 << ULTRA_SENSOR_1_TRIG) | (1 << ULTRA_SENSOR_2_TRIG);
 }
