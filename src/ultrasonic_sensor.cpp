@@ -1,13 +1,15 @@
 #include <Arduino.h>
 #include "../include/ultrasonic_sensor.h"
 
+
+UltrasonicSensor_t ultrasonic_sensor[2] = {{FRONT_TRIG, FRONT_ECHO, {0}}, {REAR_TRIG, REAR_ECHO, {0}}}
 static volatile unsigned long initial_time = 0;
 static volatile unsigned long end_time = 0;
 
 static  unsigned long latest_trigger = 0;
 static volatile unsigned long pulse_received_time = 0;
 
-static volatile UltrasonicEchoPosition_t echo_pin_position = FRONT_ECHO;
+static volatile UltrasonicSensorEcho_t echo_pin_position = FRONT_ECHO;
 volatile UltrasonicSensorFSM_t actual_state = PULSE_NOT_SEND;
 
 __attribute__((always_inline))
@@ -25,14 +27,14 @@ static inline void trigger_delay(){
 }
 
 
-void trigger(UltrasonicTrigPosition_t sensor_trig_pin_position, UltrasonicEchoPosition_t sensor_echo_pin_position){
+void trigger(UltrasonicSensor_t *ultrasonic_sensor){
     if (actual_state == PULSE_NOT_SEND || actual_state == TIMEOUT){
         latest_trigger = millis();
-        echo_pin_position = sensor_echo_pin_position;
-        actual_state = PULSE_SENT;
-        PORTC |= sensor_trig_pin_position;
+        PORTC |= ultrasonic_sensor->trig_pin;
         delayMicroseconds(10);
-        PORTC &= ~(sensor_trig_pin_position);
+        PORTC &= ~(ultrasonic_sensor->trig_pin);
+        echo_pin_position = ultrasonic_sensor->echo_pin;
+        actual_state = PULSE_SENT;
     } else {  
       trigger_delay();
     }

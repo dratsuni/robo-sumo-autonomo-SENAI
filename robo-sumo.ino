@@ -10,17 +10,12 @@ void setup() {
     start_timer1_phase_correct_pwm();
     start_pins();
     sei();
+    motor_manager(&motor_1, CLOCK_WISE, 100);
 }
 
 
 void loop() {
-    unsigned int distance = 0;
-    trigger(FRONT_TRIG, FRONT_ECHO);
-    if (actual_state == PULSE_RECEIVED){
-            distance = 0.01723 * pulse_time_calc();
-            Serial.println(distance);
 
-    }
 }
 
 
