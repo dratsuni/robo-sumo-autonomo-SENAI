@@ -3,23 +3,23 @@
 #include "../include/pins.h"
 
 
-void change_motor_state(MotorFSM_t state){
+void change_motor_state(MotorFSM_t state, InxPin_t inx_1, InxPin_t inx_2){
     switch (state) {
         case CLOCK_WISE:
-          PORTB |= (1 << IN1);
-          PORTB &= ~(1 << IN2_AND_IN4);
+          PORTB |= inx_1;
+          PORTB &= ~(inx_2);
           break;
         case COUNTER_CLOCK_WISE:
-          PORTB |= (1 << IN2_AND_IN4);
-          PORTB &= ~(1 << IN1_AND_IN3);
+          PORTB |= inx_2;
+          PORTB &= ~(inx_1);
           break;
         case STOP:
-          PORTB &= ~((1 << IN1_AND_IN3) | (1 << IN2_AND_IN4));
+          PORTB &= ~(inx_1 | inx_2);
           break;
         case BRAKE:
-          PORTB |= (1 << IN1_AND_IN3) | (1 << IN2_AND_IN4);
+          PORTB |= inx_1 | inx_2;
         default:
-          PORTB &= ~((1 << IN1_AND_IN3) | (1 << IN2_AND_IN4));
+          PORTB &= ~(inx_2 | inx_2);
           break;
     }
 

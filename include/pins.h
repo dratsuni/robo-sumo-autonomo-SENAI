@@ -10,6 +10,6 @@
 #define IN2 PB3
 #define IN3 PB4
 #define IN4 PB5
-
+#define ENABLE_ALL_H_BRIDGE_PINS 0x3F
 
 #endif
