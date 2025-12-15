@@ -3,7 +3,6 @@
 #include "include/ultrasonic_sensor.h"
 
 
-
 void setup() {
     Serial.begin(9600);
     cli();
@@ -12,8 +11,6 @@ void setup() {
     start_pins();
     sei();
 }
-
-
 
 
 void loop() {
