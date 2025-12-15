@@ -11,10 +11,7 @@ typedef enum {
 } __attribute__((packed)) MovementFMS_t;
 
 
-extern MovementFMS_t robot_actual_state;
-
-
-
+extern MovementFMS_t g_robot_actual_state;
 
 
 

@@ -1,31 +1,30 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 #include "pins.h"
+
 typedef enum{
   CLOCK_WISE,
   COUNTER_CLOCK_WISE,
   STOP,
   BRAKE
-} __attribute__((packed)) MotorFSM_t;
+} __attribute__((packed)) MotorDirection_t;
 
-typedef enum{
-    IN1_PIN = (1 << IN1),
-    IN2_PIN = (1 << IN2),
-    IN3_PIN = (1 << IN3),
-    IN4_PIN = (1 << IN4)
+
+typedef enum {
+  IN1_PIN = (1 << IN1),
+  IN2_PIN = (1 << IN2),
+  IN3_PIN = (1 << IN3),
+  IN4_PIN = (1 << IN4)
 } __attribute__((packed)) InxPin_t;
 
+typedef struct {
+    InxPin_t inx_1;
+    InxPin_t inx_2;
+    void (*motor_velocity_manager) (uint8_t velocity);
+} Motor_t;
 
+extern Motor_t g_motor_1;
+extern Motor_t g_motor_2;
 
-__attribute__((always_inline))
-inline void change_velocity_motor(uint8_t velocity_motor1, uint8_t velocity_motor2){
-  OCR1A = velocity_motor1;
-  OCR1B = velocity_motor2;
-}
-
-
-void change_motor_state(MotorFSM_t state);
-
-
-
+void motor_manager(Motor_t *motor, MotorDirection_t direction, uint8_t velocity);
 #endif
