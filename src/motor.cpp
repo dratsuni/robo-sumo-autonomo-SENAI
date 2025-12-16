@@ -4,11 +4,12 @@
 
 
 
+
 static void change_velocity_motor_1(uint8_t velocity);
 static void change_velocity_motor_2(uint8_t velocity);
 
-Motor_t motor_1 = {IN1_PIN, IN2_PIN, change_velocity_motor_1};
-Motor_t motor_2 = {IN3_PIN, IN4_PIN, change_velocity_motor_2};
+Motor_t g_motor_1 = {IN1_PIN, IN2_PIN, change_velocity_motor_1};
+Motor_t g_motor_2 = {IN3_PIN, IN4_PIN, change_velocity_motor_2};
 
 
 static void change_velocity_motor_1(uint8_t velocity){
@@ -43,4 +44,20 @@ static void change_motor_direction(MotorDirection_t direction, Motor_t *motor){
 void motor_manager(Motor_t *motor, MotorDirection_t direction, uint8_t velocity){
   motor->motor_velocity_manager(velocity);
   change_motor_direction(direction, motor);
+}
+
+
+void drive(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity, MotorDirection_t direction){
+  motor_manager(motor_1, direction, velocity);
+  motor_manager(motor_2, direction, velocity);
+}
+
+void turn(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity_curve){
+  motor_manager(motor_1, CLOCK_WISE, velocity_curve);
+  motor_manager(motor_2, CLOCK_WISE, 100);
+}
+
+void rotate(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity){
+  motor_manager(motor_1, CLOCK_WISE, velocity);
+  motor_manager(motor_2, COUNTER_CLOCK_WISE, velocity);     
 }
