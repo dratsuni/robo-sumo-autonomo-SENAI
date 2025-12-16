@@ -4,6 +4,7 @@
 Explorar o uso de Registradores para aproveitamento eficiente das capacidades do arduino (você pode complementar @dratsuni)
 
 ## Descrição 
+https://www.tinkercad.com/things/jaid3eWrbSX-v2?sharecode=tanXYu2DRVrXd9FRoDCKiLnOYknDvmg-rGgqkKgtICE
 ### Fluxograma
 
 ## Componentes
@@ -46,3 +47,4 @@ apontar também a modularidade do codigo e o HAL
 ## Testes e Conclusões
   ### Dificuldades
   ### Possiveis Melhorias
+
