@@ -27,4 +27,8 @@ extern Motor_t g_motor_1;
 extern Motor_t g_motor_2;
 
 void motor_manager(Motor_t *motor, MotorDirection_t direction, uint8_t velocity);
+void drive(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity, MotorDirection_t direction);
+void turn(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity_curve);
+void rotate(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity);   
+
 #endif

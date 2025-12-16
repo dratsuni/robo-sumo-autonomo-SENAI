@@ -1,7 +1,7 @@
 #include "include/start_configs.h"
 #include "include/motor.h"
 #include "include/ultrasonic_sensor.h"
-
+#include "include/utils.h"
 
 void setup() {
     Serial.begin(9600);
@@ -10,11 +10,22 @@ void setup() {
     start_timer1_phase_correct_pwm();
     start_pins();
     sei();
-    motor_manager(&motor_1, CLOCK_WISE, 100);
 }
 
 
 void loop() {
+    trigger(&g_ultrasonic_sensor[0]);
+    if (g_ultrasonic_sensor[0].buffer_index == 4){
+        unsigned long array[5];
+        cli();
+         memcpy(array, (const void*)g_ultrasonic_sensor[0].read_buffer, sizeof(unsigned long) * 5);
+        sei();
+        insertion_sort(array, 5);
+            int distance = 0.01723 * array[2];
+
+            Serial.println(distance);
+
+    }
 
 }
 
