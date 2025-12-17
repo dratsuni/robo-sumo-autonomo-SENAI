@@ -1,25 +1,26 @@
 #include <Arduino.h>
 #include "../include/robot_director.h"
 #include "../include/ultrasonic_sensor.h"
+#define STATE_MOVE_QUANTITY 9
 
+
+typedef void (*MoveStates)();
+static MoveStates moves[STATE_MOVE_QUANTITY] = {/*funcoes de movimento ficarão aqui*/};
 
 MovementFMS_t g_robot_actual_state = SEARCH;
+static UltrasonicPosition_t actual_sensor_position = FRONT;
 
 
 
+static void ultrasonic_sensor_controller(unsigned int distance){
+}
 
 
-
-
-
-static void state_controller(unsigned int distance_in_micro, UltrasonicPosition_t sensor_position){
-    unsigned int distance = distance_in_micro / 58;
-    switch (sensor_position) {
+static void state_set(unsigned int distance){
+    switch (actual_sensor_position) {
       case FRONT:
-        if (distance < 30 && distance > 10){
+        if (distance < 30 && distance > 0){
           g_robot_actual_state = ATTACK;
-        } else if (distance <= 10 && distance > 0) {
-          g_robot_actual_state = HAMMER_MODE;
         } else {
           g_robot_actual_state = SEARCH;
         }
@@ -43,4 +44,10 @@ static void state_controller(unsigned int distance_in_micro, UltrasonicPosition_
         }
         break;
     }
+}
+
+
+static void move_controller(MovementFMS_t state){
+    moves[state]();
+
 }

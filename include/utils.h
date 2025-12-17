@@ -2,6 +2,7 @@
 #define UTILS_H
 
 
+
 __attribute__((always_inline))
 inline void insertion_sort(unsigned int *array, uint8_t size){
   unsigned long key = 0;

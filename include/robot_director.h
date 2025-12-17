@@ -6,7 +6,6 @@
 typedef enum {
   SEARCH,
   ATTACK,
-  HAMMER_MODE,
   TURN_RIGH,
   TURN_LEFT,
   DODGE_BACKWARD,
