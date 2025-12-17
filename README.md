@@ -21,7 +21,10 @@ https://www.tinkercad.com/things/jaid3eWrbSX-v2?sharecode=tanXYu2DRVrXd9FRoDCKiL
 apontar também a modularidade do codigo e o HAL
 
 ## Montagem
+
 ### Esquema do circuito elétrico
+
+![esquema_eletrico](https://imgur.com/a/2QBZJJs)
 
 ## Estrátegia
 
@@ -47,4 +50,5 @@ apontar também a modularidade do codigo e o HAL
 ## Testes e Conclusões
   ### Dificuldades
   ### Possiveis Melhorias
+
 
