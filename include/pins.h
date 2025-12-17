@@ -1,9 +1,22 @@
 #ifndef PINS_H
 #define PINS_H
-#define ULTRA_SENSOR_1_ECHO PD4
+
+//PORTC
+// pino TRIG sensore ultrassonico
 #define ULTRA_SENSOR_1_TRIG PC0
-#define ULTRA_SENSOR_2_ECHO PD5
 #define ULTRA_SENSOR_2_TRIG PC1
+#define ULTRA_SENSOR_3_TRIG PC2
+//sensores infravermelho
+#define IR_sensor_1 PC3
+#define IR_sensor_2 PC4
+#define IR_sensor_3 PC5
+
+//PORTD
+#define ULTRA_SENSOR_1_ECHO PD4
+#define ULTRA_SENSOR_2_ECHO PD5
+#define ULTRA_SENSOR_3_ECHO PD3
+
+//PORTB
 #define MOTOR_1_ENA PB1
 #define MOTOR_2_ENB PB2
 #define IN1 PB0

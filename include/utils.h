@@ -3,7 +3,7 @@
 
 
 __attribute__((always_inline))
-inline void insertion_sort(unsigned long *array, uint8_t size){
+inline void insertion_sort(unsigned int *array, uint8_t size){
   unsigned long key = 0;
   for (uint8_t i = 0; i < size; i++){
     for (uint8_t j = i; j > 0; j--){

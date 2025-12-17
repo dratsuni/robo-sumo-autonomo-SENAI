@@ -1,23 +1,28 @@
+#include <avr/interrupt.h>
 #include <Arduino.h>
 #include "../include/ultrasonic_sensor.h"
+#include "../include/utils.h"
+
+volatile UltrasonicSensor_t g_ultrasonic_sensor[3] = {
+  {FRONT, FRONT_TRIG, FRONT_ECHO, {0}, 0}, 
+  {RIGHT, RIGHT_TRIG, RIGHT_ECHO, {0}, 0}, 
+  {LEFT, LEFT_TRIG, LEFT_ECHO, {0}, 0}
+};
 
 
-volatile UltrasonicSensor_t g_ultrasonic_sensor[2] = {{FRONT, FRONT_TRIG, FRONT_ECHO, {0}, 0}, {REAR, REAR_TRIG, REAR_ECHO, {0}, 0}};
 static volatile UltrasonicSensor_t *actual_ultrasonic_sensor;
 static volatile unsigned long initial_time = 0;
-static volatile unsigned long end_time = 0;
 
 static  unsigned long latest_trigger = 0;
 static volatile unsigned long pulse_received_time = 0;
 
-static volatile UltrasonicSensorEcho_t echo_pin_position = FRONT_ECHO;
 volatile UltrasonicSensorFSM_t g_actual_state = PULSE_NOT_SEND;
 
 __attribute__((always_inline))
 static inline void trigger_delay(){
   if (g_actual_state == PULSE_RECEIVED){
       cli();
-      unsigned atomic_pulse_received_time = millis() - pulse_received_time;
+      unsigned long atomic_pulse_received_time = millis() - pulse_received_time;
       sei();
       if (atomic_pulse_received_time >= 25){
         g_actual_state = PULSE_NOT_SEND;
@@ -42,12 +47,17 @@ void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
     }
 }
 
-
-unsigned int pulse_time_calc(){
-    cli();
-    unsigned long time = end_time - initial_time;
-    sei();
-    return time;
+unsigned int sensor_median(){
+  unsigned int median = 0; 
+  if (actual_ultrasonic_sensor->buffer_index == READ_BUFFER_LIMIT - 1){
+     unsigned int temp_read_buffer[READ_BUFFER_LIMIT];
+     cli();
+     memcpy(temp_read_buffer, (const void *)actual_ultrasonic_sensor->read_buffer, sizeof(unsigned int) * READ_BUFFER_LIMIT);
+     sei();
+     insertion_sort(temp_read_buffer, READ_BUFFER_LIMIT);
+     median = temp_read_buffer[ACTUAL_MEDIAN_INDEX];
+  }
+  return median;
 }
 
 ISR (PCINT2_vect){
