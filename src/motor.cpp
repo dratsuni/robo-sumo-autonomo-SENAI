@@ -47,17 +47,18 @@ void motor_manager(Motor_t *motor, MotorDirection_t direction, uint8_t velocity)
 }
 
 
-void drive(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity, MotorDirection_t direction){
+void move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t direction, uint8_t velocity){
   motor_manager(motor_1, direction, velocity);
   motor_manager(motor_2, direction, velocity);
 }
 
-void turn(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity_curve){
-  motor_manager(motor_1, CLOCK_WISE, velocity_curve);
-  motor_manager(motor_2, CLOCK_WISE, 100);
+
+void turn(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t direction){
+  motor_manager(motor_1, direction, 50);
+  motor_manager(motor_2, direction, 100);
 }
 
-void rotate(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity){
+void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity){
   motor_manager(motor_1, CLOCK_WISE, velocity);
   motor_manager(motor_2, COUNTER_CLOCK_WISE, velocity);     
 }

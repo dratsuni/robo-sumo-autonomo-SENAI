@@ -15,18 +15,18 @@ void setup() {
 
 void loop() {
     trigger(&g_ultrasonic_sensor[0]);
-    if (g_ultrasonic_sensor[0].buffer_index == 4){
-        unsigned long array[5];
-        cli();
-         memcpy(array, (const void*)g_ultrasonic_sensor[0].read_buffer, sizeof(unsigned long) * 5);
-        sei();
-        insertion_sort(array, 5);
-            int distance = 0.01723 * array[2];
-
-            Serial.println(distance);
-
+    if (g_actual_state == PULSE_RECEIVED){
+        unsigned int median = sensor_median();
+        if (median != 0){
+            unsigned int median_convert =  median / 58;
+            Serial.println(median_convert);
+            if (median < 30){
+                move(&g_motor_1, &g_motor_2, CLOCK_WISE, 100);
+            } else {
+                move(&g_motor_1, &g_motor_2, CLOCK_WISE, 0);
+            }
+        }
     }
-
 }
 
 
