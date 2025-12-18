@@ -48,6 +48,10 @@ apontar também a modularidade do codigo e o HAL
   * como é o scaneamento
   
 ## Testes e Conclusões
+
+  #### Playlist da equipe
+  * https://youtube.com/playlist?list=PLKnvuzxRsdl1yls-MqXq9lSY66JDN-sMj&si=i5gbV4IcVIsQtO6N
+
   ### Dificuldades
   ### Possiveis Melhorias
 
