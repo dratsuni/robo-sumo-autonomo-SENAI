@@ -1,5 +1,4 @@
-### Criar novo diagrama no Draw.io e colar código abaixo:
-Extras -> Editar o diagrama...
+### No Draw.io: Criar novo diagrama -> Extras -> Editar o diagrama...no e colar código abaixo:
 
 <mxGraphModel dx="2665" dy="2189" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#010409)" math="0" shadow="0">
   <root>
