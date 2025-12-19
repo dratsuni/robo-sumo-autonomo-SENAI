@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "../include/motor.h"
 #include "../include/pins.h"
-
+#include "../include/robot_state.h"
 
 
 
@@ -61,4 +61,20 @@ void turn(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t direction){
 void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity){
   motor_manager(motor_1, CLOCK_WISE, velocity);
   motor_manager(motor_2, COUNTER_CLOCK_WISE, velocity);     
+}
+
+
+void brake(Motor_t *motor_1, Motor_t *motor_2){
+  change_motor_direction(BRAKE, motor_1);
+  change_motor_direction(BRAKE, motor_2);
+}
+
+
+void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, int delay){
+  int initial_millis = millis();
+  while (millis() - initial_millis <= delay && g_actual_robot_state != FLEE) {
+    rotate_axis(motor_1, motor_2, velocity);
+  }
+
+  brake(motor_1, motor_2);
 }
