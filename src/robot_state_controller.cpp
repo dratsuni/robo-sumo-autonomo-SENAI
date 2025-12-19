@@ -4,17 +4,14 @@
 #include "../include/robot_state.h"
 #define STATE_MOVE_QUANTITY 9
 
-
 typedef void (*MoveStates)();
 static MoveStates moves[STATE_MOVE_QUANTITY] = {/*funcoes de movimento ficarão aqui*/};
 
 static MovementState_t movement; 
 static UltrasonicPosition_t actual_sensor_position = FRONT;
 
-
-
-static void move_controller(unsigned int distance){
-    switch (g_actual_robot_state){
+static void state_controller(unsigned int distance){
+    switch (g_current_robot_state){
       case ATTACK:
         attack();
         break;
@@ -27,14 +24,12 @@ static void move_controller(unsigned int distance){
     }
 }
 
-
-
 void robot_controller(){
   unsigned int distance = ultrasonic_sensor_controller(actual_sensor_position);
   if (distance != 0){
     Serial.println(distance);
     state_set(distance, actual_sensor_position);
-    move_controller(distance);
+    state_controller(distance);
   }
 }
 
