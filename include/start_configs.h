@@ -15,9 +15,11 @@ inline void start_timer1_phase_correct_pwm(){
   OCR1B = 0;
 }
 
-inline void start_pcint2_interrupt(){
-  PCICR = (1 << PCIE2);
+inline void start_pcintx_interrupt(){
+  PCICR = (1 << PCIE2) | (1 << PCIE1);
   PCMSK2 = (1 << PCINT21) | (1 << PCINT20);
+  PCMSK1 = (1 << PCINT11) | (1 << PCINT12) | (1 << PCINT13);
+
 }
 
 inline void start_pins(){
