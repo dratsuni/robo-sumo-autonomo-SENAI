@@ -9,7 +9,6 @@ volatile UltrasonicSensor_t g_ultrasonic_sensor[3] = {
   {LEFT, LEFT_TRIG, LEFT_ECHO, {0}, 0}
 };
 
-
 static volatile UltrasonicSensor_t *actual_ultrasonic_sensor;
 static volatile unsigned long initial_time = 0;
 static bool buffer_is_calculed = 0;
