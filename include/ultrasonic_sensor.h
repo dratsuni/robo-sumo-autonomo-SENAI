@@ -4,8 +4,6 @@
 #define ACTUAL_MEDIAN_INDEX 2
 #include "pins.h"
 
-
-
 typedef enum {
   PULSE_SENT,
   PULSE_WAIT,
