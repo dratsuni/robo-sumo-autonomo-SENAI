@@ -4,9 +4,9 @@
 Explorar o uso de Registradores para aproveitamento eficiente das capacidades do arduino (você pode complementar @dratsuni)
 
 ## Descrição 
-https://www.tinkercad.com/things/jaid3eWrbSX-v2?sharecode=tanXYu2DRVrXd9FRoDCKiLnOYknDvmg-rGgqkKgtICE
-### Fluxograma
-<img src="fluxograma.png" alt="Fluxograma" width="50%">
+
+### Fluxograma do Robô
+<img src="fluxograma.png" alt="Fluxograma" width="75%">
 
 ## Componentes
 1. componente
@@ -55,6 +55,7 @@ apontar também a modularidade do codigo e o HAL
 
   ### Dificuldades
   ### Possiveis Melhorias
+
 
 
 
