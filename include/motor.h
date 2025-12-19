@@ -9,7 +9,6 @@ typedef enum{
   BRAKE
 } __attribute__((packed)) MotorDirection_t;
 
-
 typedef enum {
   IN1_PIN = (1 << IN1),
   IN2_PIN = (1 << IN2),

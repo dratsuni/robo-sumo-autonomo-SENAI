@@ -32,7 +32,6 @@ static inline void trigger_delay(){
    }
 }
 
-
 static void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
     if (g_actual_sensor_state == PULSE_NOT_SEND || g_actual_sensor_state == TIMEOUT){
 
@@ -59,7 +58,6 @@ static unsigned int sensor_median(){
   }
   return median;
 }
-
 
 unsigned int ultrasonic_sensor_controller(UltrasonicPosition_t position){
   unsigned int distance_in_micro = 0;
