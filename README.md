@@ -6,7 +6,7 @@ Explorar o uso de Registradores para aproveitamento eficiente das capacidades do
 ## Descrição 
 https://www.tinkercad.com/things/jaid3eWrbSX-v2?sharecode=tanXYu2DRVrXd9FRoDCKiLnOYknDvmg-rGgqkKgtICE
 ### Fluxograma
-![Fluxograma](fluxograma.png)
+<img src="fluxograma.png" alt="Fluxograma" width="50%">
 
 ## Componentes
 1. componente
@@ -55,6 +55,7 @@ apontar também a modularidade do codigo e o HAL
 
   ### Dificuldades
   ### Possiveis Melhorias
+
 
 
 
