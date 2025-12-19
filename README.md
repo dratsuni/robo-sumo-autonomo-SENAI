@@ -1,7 +1,12 @@
 # Relatorio do Projeto
 
 ## Objetivos
-Explorar o uso de Registradores para aproveitamento eficiente das capacidades do arduino (você pode complementar @dratsuni)
+O objetivo principal deste projeto foi o desenvolvimento e a implementação de um robô autônomo para a modalidade "Sumô de Robôs", capaz de operar em uma arena circular respeitando as restrições de peso (1kg) e dimensões estabelecidas.
+
+## Objetivos Específicos
+1. Integrar sistemas de hardware e software utilizando arquitetura baseada em HAL (Hardware Abstraction Layer).
+2. Implementar lógica de controle via manipulação direta de registradores do microcontrolador ATmega328P para otimização de tempo de resposta.
+3. Aplicar conhecimentos de eletrônica na substituição e adaptação de componentes do kit básico para superação de falhas de hardware.
 
 ## Descrição 
 
@@ -55,6 +60,7 @@ apontar também a modularidade do codigo e o HAL
 
   ### Dificuldades
   ### Possiveis Melhorias
+
 
 
 
