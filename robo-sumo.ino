@@ -1,5 +1,7 @@
 #include "include/start_configs.h"
 #include "include/robot_state_controller.h"
+
+//Configurações de Interrupções de harware, registradores e pinos
 void setup() {
     Serial.begin(9600);
     cli();
@@ -9,8 +11,9 @@ void setup() {
     sei();
 }
 
+//Controle do robô com verificações de estado
 void loop(){
- robot_controller();
+    robot_controller();
 }
 
 

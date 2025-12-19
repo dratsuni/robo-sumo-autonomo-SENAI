@@ -8,27 +8,37 @@ typedef void (*MoveStates)();
 static MoveStates moves[STATE_MOVE_QUANTITY] = {/*funcoes de movimento ficarão aqui*/};
 
 static MovementState_t movement; 
-static UltrasonicPosition_t actual_sensor_position = FRONT;
+static UltrasonicPosition_t current_sensor_direction = FRONT;
 
+//CONTROLE COM BASE NO ESTADO GLOBAL (g_current_robot_state)
+//1. ATTACK -> Rotaciona o proprio eixo para a direção atual e executa a logica de ataque;
+//2. SCAN -> Rotaciona o proprio eixo em busca do inimigo;
+//3. FLEE -> Fuga na direção contrária da linha branca.
 static void state_controller(unsigned int distance){
     switch (g_current_robot_state){
-      case ATTACK:
+      case ATTACK: 
+        //rotate_axis();
         attack();
         break;
       case SCAN:
-        actual_sensor_position = scan(actual_sensor_position, distance);
-        Serial.println(actual_sensor_position);
+        current_sensor_direction = scan(current_sensor_direction, distance);
+        Serial.println(current_sensor_direction);
         break;
       case FLEE:
+        flee();
         break;
     }
-}
+} 
 
+//DIRETOR GERAL DO ROBÔ
+//1. Obtemos a distância do sensor atual (current_sensor_direction), que é concorrente para verificação;
+//2. Atualizamos o estado global do robô;
+//3. Agimos com base na distancia e no estado atual.
 void robot_controller(){
-  unsigned int distance = ultrasonic_sensor_controller(actual_sensor_position);
+  unsigned int distance = ultrasonic_sensor_controller(current_sensor_direction);
   if (distance != 0){
     Serial.println(distance);
-    state_set(distance, actual_sensor_position);
+    update_global_state(distance, current_sensor_direction);
     state_controller(distance);
   }
 }
