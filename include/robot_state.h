@@ -8,7 +8,6 @@ typedef enum {
   FLEE
 } __attribute__((packed)) RobotStates_t;
 
-
 typedef enum{
   TURN_LEFT,
   TURN_RIGHT,
@@ -20,6 +19,6 @@ extern RobotStates_t g_actual_robot_state;
 void attack();
 void flee(MovementState_t direction);
 UltrasonicPosition_t scan(UltrasonicPosition_t position, unsigned int distance);
-void state_set(unsigned int distance, UltrasonicPosition_t sensor_position);
+void update_global_state(unsigned int distance, UltrasonicPosition_t sensor_position);
 
 #endif
