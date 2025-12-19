@@ -25,7 +25,6 @@ UltrasonicPosition_t scan(UltrasonicPosition_t position, unsigned int distance){
     return temp_position;
 }
 
-
 void state_set(unsigned int distance, UltrasonicPosition_t sensor_position){
     switch (sensor_position) {
       case FRONT:

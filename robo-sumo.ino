@@ -9,10 +9,8 @@ void setup() {
     sei();
 }
 
-
 void loop(){
  robot_controller();
-
 }
 
 
