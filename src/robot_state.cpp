@@ -9,29 +9,27 @@ void attack(){
 
 void flee();
 
-UltrasonicPosition_t scan(UltrasonicPosition_t direction, unsigned int distance){
-    UltrasonicPosition_t temp_direction = direction;
-    switch (direction) {
-      case FRONT:
-        if (distance > 40){
-          temp_direction = RIGHT;
-        } else {
-          temp_direction = FRONT;
-        }
-      break;
+UltrasonicPosition_t scan(UltrasonicPosition_t position){
+    UltrasonicPosition_t update_position;
+    if (position == FRONT){
+      update_position = RIGHT;
+    } else if (position == RIGHT){
+      update_position = LEFT;
+    } else {
+      update_position = FRONT;
     }
 
     rotate_axis_with_delay(&g_motor_1, &g_motor_2, 100, 25);
-    return temp_direction;
+    return update_position;
 }
 
-void update_global_state(unsigned int distance, UltrasonicPosition_t sensor_direction){
+void update_global_state(unsigned int distance, UltrasonicPosition_t sensor_position){
     if (distance > 30) {
         g_current_robot_state = SCAN;
         return;
     }
     
-    switch (sensor_direction) {
+    switch (sensor_position) {
       case FRONT:    
           g_current_robot_state = ATTACK;
         break;
