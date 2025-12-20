@@ -39,6 +39,7 @@ void flee(){
 
 UltrasonicPosition_t scan(UltrasonicPosition_t position){
     UltrasonicPosition_t update_position;
+
     if (position == FRONT){
       update_position = RIGHT;
     } else if (position == RIGHT){
