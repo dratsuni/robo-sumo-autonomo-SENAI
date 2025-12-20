@@ -16,7 +16,9 @@ static  unsigned long latest_trigger = 0;
 static volatile unsigned long pulse_received_time = 0;
 
 volatile UltrasonicSensorFSM_t g_actual_sensor_state = PULSE_NOT_SEND;
-
+/* Função para dar intervalo entre os disparos do sensores. 25 ms é um limite em uma arena de 77 cm.
+  O limite de espera do retorno do pulso é de 60 ms. Recomendado pelo datasheet do HC SR04.
+*/ 
 __attribute__((always_inline))
 static inline void trigger_delay(){
   if (g_actual_sensor_state == PULSE_RECEIVED){
@@ -32,7 +34,7 @@ static inline void trigger_delay(){
 }
 
 
-//Função básica de trigge
+//Função básica de trigger.
 static void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
     if (g_actual_sensor_state == PULSE_NOT_SEND || g_actual_sensor_state == TIMEOUT){
 
@@ -63,7 +65,7 @@ static unsigned int sensor_median(){
 }
 
 
-
+//Diferente do trigger, esta função chama o trigger, pega a mediana e retorna o valor convertidos para cm.
 unsigned int trigger_and_calculate(UltrasonicPosition_t position){
   unsigned int distance_in_micro = 0;
   unsigned distance_in_cm = 0;
