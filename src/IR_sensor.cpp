@@ -1,11 +1,9 @@
 #include "../include/IR_sensor.h"
 #include "../include/pins.h"
 
-
-
-
 volatile IRPosition_t g_current_IR_position = NO_LINE_DETECTED;
 
+//Essa interrupção é chamada toda vez que os sensores IR detectar uma linha branca.
 ISR (PCINT1_vect){
   if (!(PINC & (1 << IR_SENSOR_1))){
     g_current_robot_state = FLEE;
