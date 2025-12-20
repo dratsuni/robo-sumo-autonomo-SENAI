@@ -19,7 +19,8 @@ extern MovementState_t g_current_move_state;
 
 void attack();
 void flee();
+void rotate();
 UltrasonicPosition_t scan(UltrasonicPosition_t position);
-void update_global_state(unsigned int distance, UltrasonicPosition_t sensor_position);
+void update_global_state(unsigned int distance, UltrasonicPosition_t *sensor_position);
 
 #endif

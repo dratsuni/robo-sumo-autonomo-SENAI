@@ -63,7 +63,7 @@ void brake(Motor_t *motor_1, Motor_t *motor_2){
   change_motor_direction(BRAKE, motor_2);
 }
 
-void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, int delay){
+void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, unsigned int delay){
   int initial_millis = millis();
   while (millis() - initial_millis <= delay && g_current_robot_state != FLEE) {
     rotate_axis(motor_1, motor_2, velocity);
