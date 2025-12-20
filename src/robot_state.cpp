@@ -9,15 +9,8 @@ void attack(){
 
 
 
-void rotate(){
-  if (g_current_move_state == TURN_RIGHT){
-    rotate_axis(&g_motor_1, &g_motor_2, 100);
-  } else if (g_current_move_state == TURN_LEFT){
-    rotate_axis(&g_motor_2, &g_motor_1, 100);
-  }
-}
 
-void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, unsigned int rotate_delay){
+static void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, unsigned int rotate_delay){
   unsigned long initial_time = millis();
 
   while (millis() - initial_time <= rotate_delay){
