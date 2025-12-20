@@ -11,7 +11,6 @@ typedef enum{
 
 } __attribute__((packed)) IRPosition_t;
 
-
 extern volatile IRPosition_t g_current_IR_position;
 
 #endif

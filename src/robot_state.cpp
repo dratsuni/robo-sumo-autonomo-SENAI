@@ -3,12 +3,10 @@
 #include "../include/motor.h"
 RobotStates_t g_current_robot_state;
 MovementState_t g_current_move_state = FORWARD;
+
 void attack(){
   move(&g_motor_1, &g_motor_2, CLOCK_WISE, 100);
 }
-
-
-
 
 static void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, unsigned int rotate_delay){
   unsigned long initial_time = millis();

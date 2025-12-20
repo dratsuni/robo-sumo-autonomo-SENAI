@@ -7,6 +7,7 @@ static void change_velocity_motor_2(uint8_t velocity);
 
 Motor_t g_motor_1 = {IN1_PIN, IN2_PIN, change_velocity_motor_1};
 Motor_t g_motor_2 = {IN3_PIN, IN4_PIN, change_velocity_motor_2};
+
 //essas funções muda a velocidade dos motores mudando o valor do registrador OCR1X (diminuindo o intervalo entre os pulsos PWM);
 static void change_velocity_motor_1(uint8_t velocity){
   OCR1A = velocity;
@@ -17,7 +18,6 @@ static void change_velocity_motor_2(uint8_t velocity){
 }
 
 //função para mudar o sentido dos motores. Isso controla o estado dos pinos IN1, IN2, IN3 e IN4 da ponte H l298n.
-
 static void change_motor_direction(MotorDirection_t direction, Motor_t *motor){
     switch (direction) {
         case CLOCK_WISE:
@@ -75,6 +75,7 @@ void brake(Motor_t *motor_1, Motor_t *motor_2){
 
 void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, unsigned int delay){
   int initial_millis = millis();
+  
   while (millis() - initial_millis <= delay && g_current_robot_state != FLEE) {
     rotate_axis(motor_1, motor_2, velocity);
   }

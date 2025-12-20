@@ -5,10 +5,6 @@
 #include "../include/motor.h"
 #define STATE_MOVE_QUANTITY 9
 
-typedef void (*MoveStates)();
-static MoveStates moves[STATE_MOVE_QUANTITY] = {/*funcoes de movimento ficarão aqui*/};
-
-static MovementState_t movement; 
 static UltrasonicPosition_t current_sensor_position = FRONT;
 
 //CONTROLE COM BASE NO ESTADO GLOBAL (g_current_robot_state)
@@ -46,4 +42,3 @@ void robot_controller(){
     state_controller(distance);
   }
 }
-
