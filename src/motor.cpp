@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "../include/motor.h"
 #include "../include/pins.h"
-#include "../include/robot_state.h"
 
 static void change_velocity_motor_1(uint8_t velocity);
 static void change_velocity_motor_2(uint8_t velocity);
@@ -58,6 +57,15 @@ void turn(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t direction){
 void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity){
   motor_manager(motor_1, CLOCK_WISE, velocity);
   motor_manager(motor_2, COUNTER_CLOCK_WISE, velocity);     
+}
+
+
+void turn_to(MovementState_t turn_to ){
+  if (turn_to == TURN_RIGHT){
+    rotate_axis(&g_motor_1, &g_motor_2, 100);
+  } else if (turn_to == TURN_LEFT){
+    rotate_axis(&g_motor_2, &g_motor_1, 100);
+  }
 }
 
 void brake(Motor_t *motor_1, Motor_t *motor_2){

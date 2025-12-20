@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "../include/robot_state_controller.h"
 #include "../include/robot_state.h"
+#include "../include/motor.h"
 #define STATE_MOVE_QUANTITY 9
 
 typedef void (*MoveStates)();
@@ -17,7 +18,7 @@ static UltrasonicPosition_t current_sensor_position = FRONT;
 static void state_controller(unsigned int distance){
     switch (g_current_robot_state){
       case ATTACK: 
-        rotate();
+        turn_to(g_current_move_state);
         attack();
         break;
       case SCAN:

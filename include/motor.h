@@ -1,7 +1,7 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 #include "pins.h"
-
+#include "robot_state.h"
 typedef enum{
   CLOCK_WISE,
   COUNTER_CLOCK_WISE,
@@ -34,5 +34,5 @@ void turn(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity_curve);
 void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity);
 void brake(Motor_t *motor_1, Motor_t *motor_2);
 void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, unsigned int delay);
-
+void turn_to(MovementState_t turn_to);
 #endif
