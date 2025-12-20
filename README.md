@@ -43,7 +43,7 @@ Com as interrupções de hardware devidamente ativadas, detectou-se alterações
 
 ### Esquema do circuito elétrico
 
-![esquema_eletrico](https://imgur.com/a/2QBZJJs)
+![esquema_eletrico](midia/circuito-eletrico/circuit-eletrico.jpeg)
 
 ## Estrátegia
 
@@ -95,6 +95,7 @@ Com as interrupções de hardware devidamente ativadas, detectou-se alterações
   ### Possiveis Melhorias
   
   Considerar substituição total da protoboard por uma **Placa de Circuito Impresso (PCI)** soldada, a fim de garantir robustez mecânica.
+
 
 
 
