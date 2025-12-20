@@ -9,10 +9,10 @@ void attack(){
 
 
 
-void rotate_to(MovementState_t move_to){
-  if (move_to == RIGHT){
+void rotate(){
+  if (g_current_move_state == RIGHT){
     rotate_axis(&g_motor_1, &g_motor_2, 400);
-  } else if (move_to == LEFT){
+  } else if (g_current_move_state == LEFT){
     rotate_axis(&g_motor_2, &g_motor_1, 400);
   }
 }
@@ -68,16 +68,17 @@ void update_global_state(unsigned int distance, UltrasonicPosition_t *sensor_pos
     switch (*sensor_position) {
       case FRONT:    
           g_current_robot_state = ATTACK;
+          g_current_move_state = FORWARD;
         break;
       case RIGHT:
          *sensor_position = FRONT;
-         rotate_to(TURN_RIGHT);
-         g_current_robot_state = ATTACK;
+          g_current_move_state = RIGHT;
+          g_current_robot_state = ATTACK;
          break;
        case LEFT:
          *sensor_position = FRONT;
-         rotate_to(TURN_LEFT);
-         g_current_robot_state = ATTACK;
+          g_current_move_state = LEFT;
+          g_current_robot_state = ATTACK;
          break;
     }
 }
