@@ -35,10 +35,13 @@ static void state_controller(unsigned int distance){
 //2. Atualizamos o estado global do robô;
 //3. Agimos com base na distancia e no estado atual.
 void robot_controller(){
-  unsigned int distance = ultrasonic_sensor_controller(current_sensor_position);
+  unsigned int distance = trigger_and_calculate(current_sensor_position);
   if (distance != 0){
-    Serial.println(distance);
-    update_global_state(distance, current_sensor_position);
+
+    if (g_current_robot_state != FLEE){
+      update_global_state(distance, current_sensor_position);
+    }
+
     state_controller(distance);
   }
 }

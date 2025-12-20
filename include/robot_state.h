@@ -1,7 +1,7 @@
 #ifndef ROBOT_STATE_H
 #define ROBOT_STATE_H
 #include "ultrasonic_sensor.h"
-
+#include "IR_sensor.h"
 typedef enum {
   SCAN,
   ATTACK,
@@ -17,8 +17,8 @@ typedef enum{
 
 extern RobotStates_t g_current_robot_state;
 void attack();
-void flee(MovementState_t direction);
-UltrasonicPosition_t scan(UltrasonicPosition_t position, unsigned int distance);
+void flee();
+UltrasonicPosition_t scan(UltrasonicPosition_t position);
 void update_global_state(unsigned int distance, UltrasonicPosition_t sensor_position);
 
 #endif

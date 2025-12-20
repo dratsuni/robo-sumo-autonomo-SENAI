@@ -1,13 +1,40 @@
+#include "Arduino.h"
 #include "../include/robot_state.h"
 #include "../include/motor.h"
-
 RobotStates_t g_current_robot_state;
 
 void attack(){
   move(&g_motor_1, &g_motor_2, CLOCK_WISE, 100);
 }
 
-void flee();
+
+void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, uint8_t rotate_delay){
+  unsigned long initial_time = millis();
+
+  while (millis() - initial_time <= rotate_delay){
+    rotate_axis(motor_1, motor_2, 100);
+  }
+
+  initial_time = millis();
+  
+  while (millis() - initial_time <= 2000){
+    move(motor_1, motor_2, diretion, 100);
+  }
+
+}
+
+void flee(){
+  if (g_current_IR_position == RIGHT_IR){
+     flee_move(&g_motor_1, &g_motor_2, CLOCK_WISE, 200);
+  } if (g_current_IR_position == LEFT_IR){
+     flee_move(&g_motor_2, &g_motor_1, CLOCK_WISE, 200);
+  } else {
+    flee_move(&g_motor_1, &g_motor_2, CLOCK_WISE, 0);
+  }
+
+  g_current_IR_position = NO_LINE_DETECTED;
+  g_current_robot_state = SCAN;
+}
 
 UltrasonicPosition_t scan(UltrasonicPosition_t position){
     UltrasonicPosition_t update_position;
