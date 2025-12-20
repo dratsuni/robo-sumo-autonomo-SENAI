@@ -45,7 +45,8 @@ typedef struct {
 extern volatile UltrasonicSensorFSM_t g_actual_state;
 
 extern volatile UltrasonicSensor_t g_ultrasonic_sensor[3];
-unsigned int ultrasonic_sensor_controller(UltrasonicPosition_t position);
+unsigned int trigger_and_calculate(UltrasonicPosition_t position);
+
 
 
 #endif

@@ -31,6 +31,8 @@ static inline void trigger_delay(){
    }
 }
 
+
+//Função básica de trigge
 static void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
     if (g_actual_sensor_state == PULSE_NOT_SEND || g_actual_sensor_state == TIMEOUT){
 
@@ -45,6 +47,8 @@ static void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
     }
 }
 
+
+//Essa função pega a mediana do buffer de leitura do sensor utilizando um agoritmo de insertion sort. Funcionando como filtro de leituras inconsistentes.
 static unsigned int sensor_median(){
   unsigned int median = 0; 
   if (actual_ultrasonic_sensor->buffer_index == READ_BUFFER_LIMIT - 1){
@@ -58,7 +62,9 @@ static unsigned int sensor_median(){
   return median;
 }
 
-unsigned int ultrasonic_sensor_controller(UltrasonicPosition_t position){
+
+
+unsigned int trigger_and_calculate(UltrasonicPosition_t position){
   unsigned int distance_in_micro = 0;
   unsigned distance_in_cm = 0;
   trigger(&g_ultrasonic_sensor[position]);
@@ -72,6 +78,8 @@ unsigned int ultrasonic_sensor_controller(UltrasonicPosition_t position){
   return distance_in_cm;
 }
 
+
+//Interrupção de hardware que é executada a cada mudança de estado nos pinos onde o ECHO está conectao.
 ISR (PCINT2_vect){
   if (g_actual_sensor_state == PULSE_SENT){
     if ((PIND & actual_ultrasonic_sensor->echo_pin)){
