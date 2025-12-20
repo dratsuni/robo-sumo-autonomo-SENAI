@@ -14,8 +14,8 @@ static volatile unsigned long initial_time = 0;
 static bool buffer_is_calculed = 0;
 static  unsigned long latest_trigger = 0;
 static volatile unsigned long pulse_received_time = 0;
-
 volatile UltrasonicSensorFSM_t g_actual_sensor_state = PULSE_NOT_SEND;
+
 /* Função para dar intervalo entre os disparos do sensores. 25 ms é um limite em uma arena de 77 cm.
   O limite de espera do retorno do pulso é de 60 ms. Recomendado pelo datasheet do HC SR04.
 */ 
@@ -33,11 +33,9 @@ static inline void trigger_delay(){
    }
 }
 
-
 //Função básica de trigger.
 static void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
     if (g_actual_sensor_state == PULSE_NOT_SEND || g_actual_sensor_state == TIMEOUT){
-
         latest_trigger = millis();
         actual_ultrasonic_sensor = ultrasonic_sensor;
         PORTC |= ultrasonic_sensor->trig_pin;
@@ -53,6 +51,7 @@ static void trigger(volatile UltrasonicSensor_t *ultrasonic_sensor){
 //Essa função pega a mediana do buffer de leitura do sensor utilizando um agoritmo de insertion sort. Funcionando como filtro de leituras inconsistentes.
 static unsigned int sensor_median(){
   unsigned int median = 0; 
+ 
   if (actual_ultrasonic_sensor->buffer_index == READ_BUFFER_LIMIT - 1){
      unsigned int temp_read_buffer[READ_BUFFER_LIMIT];
      cli();
@@ -61,15 +60,17 @@ static unsigned int sensor_median(){
      insertion_sort(temp_read_buffer, READ_BUFFER_LIMIT);
      median = temp_read_buffer[ACTUAL_MEDIAN_INDEX];
   }
+ 
   return median;
 }
-
 
 //Diferente do trigger, esta função chama o trigger, pega a mediana e retorna o valor convertidos para cm.
 unsigned int trigger_and_calculate(UltrasonicPosition_t position){
   unsigned int distance_in_micro = 0;
   unsigned distance_in_cm = 0;
+ 
   trigger(&g_ultrasonic_sensor[position]);
+ 
   if (g_actual_sensor_state == PULSE_RECEIVED){
       distance_in_micro = sensor_median();
       if (distance_in_micro != 0){
@@ -79,7 +80,6 @@ unsigned int trigger_and_calculate(UltrasonicPosition_t position){
 
   return distance_in_cm;
 }
-
 
 //Interrupção de hardware que é executada a cada mudança de estado nos pinos onde o ECHO está conectao.
 ISR (PCINT2_vect){

@@ -2,6 +2,7 @@
 #define MOTOR_H
 #include "pins.h"
 #include "robot_state.h"
+
 typedef enum{
   CLOCK_WISE,
   COUNTER_CLOCK_WISE,
@@ -25,14 +26,12 @@ typedef struct {
 extern Motor_t g_motor_1;
 extern Motor_t g_motor_2;
 
-
-
 void motor_controller(Motor_t *motor, MotorDirection_t direction, uint8_t velocity);
-
 void move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t direction, uint8_t velocity);
 void turn(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity_curve);
 void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity);
 void brake(Motor_t *motor_1, Motor_t *motor_2);
 void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, unsigned int delay);
 void turn_to(MovementState_t turn_to);
+
 #endif
