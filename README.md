@@ -9,7 +9,7 @@ O objetivo principal deste projeto foi o desenvolvimento e a implementação de 
 3. Aplicar conhecimentos de eletrônica na substituição e adaptação de componentes do kit básico para superação de falhas de hardware.
 
 ## Fluxograma do Robô
-<img src="fluxograma.png" alt="Fluxograma" width="75%">
+<img src="fluxograma.png" alt="Fluxograma" width="50%">
 
 ## Componentes
 #### O sistema do robô foi construído sobre um chassi impresso em 3D. Os componentes principais utilizados foram:
@@ -95,6 +95,7 @@ Com as interrupções de hardware devidamente ativadas, detectou-se alterações
   ### Possiveis Melhorias
   
   Considerar substituição total da protoboard por uma **Placa de Circuito Impresso (PCI)** soldada, a fim de garantir robustez mecânica.
+
 
 
 
