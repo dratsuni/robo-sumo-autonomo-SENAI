@@ -17,7 +17,7 @@ static UltrasonicPosition_t current_sensor_position = FRONT;
 static void state_controller(unsigned int distance){
     switch (g_current_robot_state){
       case ATTACK: 
-        //rotate_axis();
+        rotate_to();
         attack();
         break;
       case SCAN:
@@ -39,7 +39,7 @@ void robot_controller(){
   if (distance != 0){
 
     if (g_current_robot_state != FLEE){
-      update_global_state(distance, current_sensor_position);
+      update_global_state(distance, &current_sensor_position);
     }
 
     state_controller(distance);
