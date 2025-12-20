@@ -21,7 +21,7 @@ static void state_controller(unsigned int distance){
         attack();
         break;
       case SCAN:
-        current_sensor_position = scan(current_sensor_position, distance);
+        current_sensor_position = scan(current_sensor_position);
         Serial.println(current_sensor_position);
         break;
       case FLEE:

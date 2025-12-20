@@ -15,7 +15,7 @@ typedef enum{
   BACKWARD
 } __attribute__((packed)) MovementState_t;
 
-extern RobotStates_t g_actual_robot_state;
+extern RobotStates_t g_current_robot_state;
 void attack();
 void flee(MovementState_t direction);
 UltrasonicPosition_t scan(UltrasonicPosition_t position, unsigned int distance);
