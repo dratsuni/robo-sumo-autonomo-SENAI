@@ -1,6 +1,7 @@
 #include "Arduino.h"
 #include "../include/robot_state.h"
 #include "../include/motor.h"
+
 RobotStates_t g_current_robot_state;
 MovementState_t g_current_move_state = FORWARD;
 
