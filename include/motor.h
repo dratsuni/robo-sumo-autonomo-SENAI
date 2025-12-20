@@ -33,6 +33,6 @@ void move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t direction, uint8_
 void turn(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity_curve);
 void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity);
 void brake(Motor_t *motor_1, Motor_t *motor_2);
-void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, int delay);
+void rotate_axis_with_delay(Motor_t *motor_1, Motor_t *motor_2, int velocity, unsigned int delay);
 
 #endif

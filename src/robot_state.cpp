@@ -10,14 +10,14 @@ void attack(){
 
 
 void rotate(){
-  if (g_current_move_state == RIGHT){
-    rotate_axis(&g_motor_1, &g_motor_2, 400);
-  } else if (g_current_move_state == LEFT){
-    rotate_axis(&g_motor_2, &g_motor_1, 400);
+  if (g_current_move_state == TURN_RIGHT){
+    rotate_axis(&g_motor_1, &g_motor_2, 100);
+  } else if (g_current_move_state == TURN_LEFT){
+    rotate_axis(&g_motor_2, &g_motor_1, 100);
   }
 }
 
-void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, uint8_t rotate_delay){
+void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, unsigned int rotate_delay){
   unsigned long initial_time = millis();
 
   while (millis() - initial_time <= rotate_delay){
@@ -72,12 +72,12 @@ void update_global_state(unsigned int distance, UltrasonicPosition_t *sensor_pos
         break;
       case RIGHT:
          *sensor_position = FRONT;
-          g_current_move_state = RIGHT;
+          g_current_move_state = TURN_RIGHT;
           g_current_robot_state = ATTACK;
          break;
        case LEFT:
          *sensor_position = FRONT;
-          g_current_move_state = LEFT;
+          g_current_move_state = TURN_LEFT;
           g_current_robot_state = ATTACK;
          break;
     }
