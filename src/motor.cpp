@@ -59,7 +59,6 @@ void rotate_axis(Motor_t *motor_1, Motor_t *motor_2, uint8_t velocity){
   motor_manager(motor_2, COUNTER_CLOCK_WISE, velocity);     
 }
 
-
 void turn_to(MovementState_t turn_to ){
   if (turn_to == TURN_RIGHT){
     rotate_axis(&g_motor_1, &g_motor_2, 100);
