@@ -38,8 +38,6 @@ typedef struct {
     uint8_t buffer_index;
 } UltrasonicSensor_t;
 
-extern volatile UltrasonicSensorFSM_t g_actual_state;
-extern volatile UltrasonicSensor_t g_ultrasonic_sensor[3];
 unsigned int trigger_and_calculate(UltrasonicPosition_t position);
 
 #endif
