@@ -26,7 +26,7 @@ void flee_move(Motor_t *motor_1, Motor_t *motor_2, MotorDirection_t diretion, ui
 void flee(){
   if (g_current_IR_position == RIGHT_IR){
      flee_move(&g_motor_1, &g_motor_2, CLOCK_WISE, 200);
-  } if (g_current_IR_position == LEFT_IR){
+  } else if (g_current_IR_position == LEFT_IR){
      flee_move(&g_motor_2, &g_motor_1, CLOCK_WISE, 200);
   } else {
     flee_move(&g_motor_1, &g_motor_2, CLOCK_WISE, 0);
